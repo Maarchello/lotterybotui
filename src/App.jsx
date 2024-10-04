@@ -1,14 +1,27 @@
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 
 import './App.css'
-import {ThemeProvider} from "@mui/material";
+import {createTheme, ThemeProvider} from "@mui/material";
+import {useTelegram} from "./hooks/useTelegram.js";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const {tg, onToggleButton} = useTelegram();
+
+    useEffect(() => {
+        tg.ready();
+    }, []);
+
+    const theme = createTheme({
+        palette: {
+            mode: tg.colorScheme,
+        },
+    })
 
   return (
     <div>
-      <ThemeProvider></ThemeProvider>
+      <ThemeProvider theme={theme}>
+          <div>Асаламу алэйкум, миллиардеры</div>
+      </ThemeProvider>
 
     </div>
   )
