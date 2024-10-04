@@ -3,7 +3,3 @@
   src: local('SalinaRegular'), url(assets/fonts/SalinaRegular/SalinaRegular.woff) format('woff');
   font-weight: bold;
 }
-
-body {
-  padding: 10px
-}

@@ -1,20 +1,22 @@
-import {useEffect, useState} from 'react'
-
 import './App.css'
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
-import {useTelegram} from "./hooks/useTelegram.js";
-import Header from "./components/Header/Header.jsx";
+import MyBottomNavigation from "./components/BottomNavigation/MyBottomNavigation.jsx";
+import {Route, Routes} from "react-router-dom";
+import LotteriesPage from "./pages/Lotteries/LotteriesPage.jsx";
+import GamesPage from "./pages/Games/GamesPage.jsx";
+import ProfilePage from "./pages/Profile/ProfilePage.jsx";
 
 function App() {
-    const {tg, onToggleButton} = useTelegram();
+    // const {tg, onToggleButton} = useTelegram();
 
-    useEffect(() => {
-        tg.ready();
-    }, []);
+    // useEffect(() => {
+    //     tg.ready();
+    // }, []);
 
     const theme = createTheme({
         palette: {
-            mode: tg.colorScheme,
+            mode: 'dark',
+            // mode: tg.colorScheme,
         },
     })
 
@@ -24,7 +26,13 @@ function App() {
           <CssBaseline />
           {/*<Header/>*/}
 
-          <div>Асаламу алэйкум, миллиардеры</div>
+          <MyBottomNavigation />
+
+          <Routes>
+              <Route index element={<LotteriesPage/>} />
+              <Route path={'games'} element={<GamesPage/>} />
+              <Route path={'profile'} element={<ProfilePage/>} />
+          </Routes>
       </ThemeProvider>
 
     </div>
