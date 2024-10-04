@@ -22,7 +22,7 @@ function App() {
     <div>
       <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Header/>
+          {/*<Header/>*/}
 
           <div>Асаламу алэйкум, миллиардеры</div>
       </ThemeProvider>
