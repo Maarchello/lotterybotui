@@ -5,18 +5,20 @@ import {Route, Routes} from "react-router-dom";
 import LotteriesPage from "./pages/Lotteries/LotteriesPage.jsx";
 import GamesPage from "./pages/Games/GamesPage.jsx";
 import ProfilePage from "./pages/Profile/ProfilePage.jsx";
+import {useTelegram} from "./hooks/useTelegram.js";
+import {useEffect} from "react";
 
 function App() {
-    // const {tg, onToggleButton} = useTelegram();
+    const {tg, onToggleButton} = useTelegram();
 
-    // useEffect(() => {
-    //     tg.ready();
-    // }, []);
+    useEffect(() => {
+        tg.ready();
+    }, []);
 
     const theme = createTheme({
         palette: {
-            mode: 'dark',
-            // mode: tg.colorScheme,
+            // mode: 'dark',
+            mode: tg.colorScheme,
         },
     })
 
