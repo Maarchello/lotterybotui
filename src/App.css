@@ -33,10 +33,13 @@
   }
 }
 
-.card {
-  padding: 2em;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.read-the-docs {
-  color: #888;
+body {
+  background: var(--tg-theme-bg-color);
+  color: var(--tg-theme-text-color);
 }

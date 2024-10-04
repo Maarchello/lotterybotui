@@ -2,7 +2,7 @@ import React from 'react';
 import {useTelegram} from "../../hooks/useTelegram";
 import './Header.css'
 import {useLocation, useNavigate} from "react-router-dom";
-import {Button} from "@mui/material";
+import Button from "../Button/Button.jsx";
 
 const Header = () => {
 
