@@ -3,7 +3,8 @@ import {Button, Card, CardActions, CardContent, CardMedia, Collapse, Typography}
 import {useTelegram} from "../../hooks/useTelegram.js";
 import {useNavigate} from "react-router-dom";
 import {getInvoiceLink} from "../../service/LotteryService.js";
-
+import CountdownTimer from "../../components/CountdownTimer.jsx";
+import '../../App.css';
 const LotteryItem = ({lottery}) => {
 
     const navigate = useNavigate();
@@ -15,19 +16,48 @@ const LotteryItem = ({lottery}) => {
         })
     }
 
+    let endDate = new Date();
+    endDate.setDate(endDate.getDate() + 1);
+
     return (
         <div>
-            <Card sx={{ minWidth: 350 }}>
+            <Card>
 
                 <CardContent>
-                    <Typography gutterBottom variant="h6" component="div">
-                        1.343.222 ⭐ <br/>
+                    <Typography gutterBottom component="div">
+                        Lottery №1
                     </Typography>
-                    <Typography sx={{mb: 1.5}} color="text.secondary">
+                    <Typography  sx={{
+                        fontSize: 25,
+                        display: "flex",
+                        justifyContent: "start",
+                        alignItems: "flex-start",
+
+                    }} color="text.secondary">
+                        ⭐: 1.343.222
 
                     </Typography>
+                    <Typography  sx={{
+                        fontSize: 25,
+                        display: "flex",
+                        justifyContent: "start",
+                        alignItems: "flex-start",
+
+                    }} color="text.secondary">
+                        👤: 100+
+                    </Typography>
+
+                    <CountdownTimer targetDate={endDate} />
+
                 </CardContent>
-                <CardActions disableSpacing>
+                <CardActions disableSpacing sx={{
+                    alignSelf: "stretch",
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    alignItems: "flex-start",
+                    // 👇 Edit padding to further adjust position
+                    p: 0,
+                }}>
                     <Button size="small" onClick={onInvestHandler}>Invest</Button>
                     {/*<ExpandMore*/}
                     {/*    expand={expanded}*/}

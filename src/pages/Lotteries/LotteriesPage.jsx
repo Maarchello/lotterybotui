@@ -13,7 +13,7 @@ const LotteriesPage = () => {
     }, []);
 
     return (
-        <div>
+        <div className="container">
             {lotteries
 
                 .map(item => {
