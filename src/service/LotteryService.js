@@ -20,8 +20,9 @@ export function getInvoiceLink(callback) {
         method: 'POST'
     };
     fetch(`${baseUrl}/api/v1/stars/invoice-link`, requestOptions)
-        .then((res) => res.json())
+        .then((res) => res.text())
         .then((data) => {
+            console.log(data)
             callback(data);
         }).catch((err) => {
         console.log(err);
