@@ -8,11 +8,11 @@ import '../../App.css';
 const LotteryItem = ({lottery}) => {
 
     const navigate = useNavigate();
-    const {tg, onToggleButton} = useTelegram();
+    const {tg, user} = useTelegram();
 
 
     const onInvestHandler = () => {
-        getInvoiceLink(lottery.id, tg.user.id, 1, (link) => {
+        getInvoiceLink(lottery.id, user?.id, 1, (link) => {
             tg.openInvoice(link);
         })
     }
