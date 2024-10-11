@@ -17,8 +17,7 @@ const LotteryItem = ({lottery}) => {
         })
     }
 
-    let endDate = new Date();
-    endDate.setDate(endDate.getDate() + 1);
+    let endDate = lottery.endDate;
 
     return (
         <div>
@@ -26,7 +25,7 @@ const LotteryItem = ({lottery}) => {
 
                 <CardContent>
                     <Typography gutterBottom component="div">
-                        Lottery №1
+                        Lottery №{lottery.id}
                     </Typography>
                     <Typography  sx={{
                         fontSize: 25,
@@ -35,7 +34,7 @@ const LotteryItem = ({lottery}) => {
                         alignItems: "flex-start",
 
                     }} color="text.secondary">
-                        ⭐: 1.343.222
+                        ⭐: {lottery.totalInvested}
 
                     </Typography>
                     <Typography  sx={{
@@ -45,7 +44,7 @@ const LotteryItem = ({lottery}) => {
                         alignItems: "flex-start",
 
                     }} color="text.secondary">
-                        👤: 100+
+                        👤: {lottery.countInvestors}
                     </Typography>
 
                     <CountdownTimer targetDate={endDate} />
