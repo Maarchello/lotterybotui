@@ -10,8 +10,9 @@ const LotteryItem = ({lottery}) => {
     const navigate = useNavigate();
     const {tg, onToggleButton} = useTelegram();
 
+
     const onInvestHandler = () => {
-        getInvoiceLink((link) => {
+        getInvoiceLink(lottery.id, tg.user.id, 1, (link) => {
             tg.openInvoice(link);
         })
     }

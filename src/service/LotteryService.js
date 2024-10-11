@@ -15,14 +15,23 @@ export function getLotteries(callback) {
     });
 }
 
-export function getInvoiceLink(callback) {
+export function getInvoiceLink(lotteryId, tgUserId, amount, callback) {
+    let json = JSON.stringify({
+        "lotteryId": lotteryId,
+        'tgUserId': tgUserId,
+        'amount': amount
+    });
     const requestOptions = {
-        method: 'POST'
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: json
     };
-    fetch(`${baseUrl}/api/v1/stars/invoice-link`, requestOptions)
+
+    console.log(json)
+
+    fetch(`${baseUrl}/api/v1/payments/invoice-link`, requestOptions)
         .then((res) => res.text())
         .then((data) => {
-            console.log(data)
             callback(data);
         }).catch((err) => {
         console.log(err);
