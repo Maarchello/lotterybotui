@@ -1,12 +1,14 @@
 // const baseUrl = 'http://localhost:8080';
-const baseUrl = 'https://tops-mudfish-logically.ngrok-free.app';
+// const baseUrl = 'https://tops-mudfish-logically.ngrok-free.app';
+
+import {Constants} from "./Constants.js";
 
 const requestOptions = {
     headers: {'ngrok-skip-browser-warning': 'anyValueHere'},
 };
 export function getLotteries(callback) {
 
-    fetch(`${baseUrl}/api/v1/lotteries`, requestOptions)
+    fetch(`${Constants.BASE_URL}/api/v1/lotteries`, requestOptions)
         .then((res) => res.json())
         .then((data) => {
             callback(data.content);
@@ -29,7 +31,7 @@ export function getInvoiceLink(lotteryId, tgUserId, amount, callback) {
 
     console.log(json)
 
-    fetch(`${baseUrl}/api/v1/payments/invoice-link`, requestOptions)
+    fetch(`${Constants.BASE_URL}/api/v1/payments/invoice-link`, requestOptions)
         .then((res) => res.text())
         .then((data) => {
             callback(data);

@@ -7,8 +7,16 @@ import GamesPage from "./pages/Games/GamesPage.jsx";
 import ProfilePage from "./pages/Profile/ProfilePage.jsx";
 import {useTelegram} from "./hooks/useTelegram.js";
 import {useEffect} from "react";
+import {authenticate} from "./service/AuthService.js";
 
 function App() {
+    const telegramData = window.Telegram.WebApp.initData || "";
+
+    authenticate(telegramData, (token) => {
+        window.localStorage.setItem("tkn", token)
+        alert(token);
+    })
+
     const {tg, onToggleButton} = useTelegram();
 
     useEffect(() => {
