@@ -23,6 +23,7 @@ const MyBottomNavigation = () => {
 
             <BottomNavigationAction value="Games" label="Games" icon={<SportsEsportsIcon/>}
                                     onClick={() => navigate("/games")}/>
+
             <BottomNavigationAction value="Profile" label="Profile" icon={<AccountCircleIcon/>}
                                     onClick={() => navigate("/profile")}/>
         </BottomNavigation>

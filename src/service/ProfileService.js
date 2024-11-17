@@ -9,7 +9,8 @@ const requestOptions = {
 export function getCurrentProfile(callback) {
 
     fetch(`${Constants.BASE_URL}/api/v1/profiles/me`, requestOptions)
-        .then((res) => res.json())
+        .then((res) => res.text())
+        .then((text) => text.length ? JSON.parse(text) : {})
         .then((data) => {
             callback(data);
         }).catch((err) => {
