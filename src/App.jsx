@@ -12,10 +12,10 @@ import {authenticate} from "./service/AuthService.js";
 function App() {
     const telegramData = window.Telegram.WebApp.initData || "";
 
-    authenticate(telegramData, (token) => {
-        window.localStorage.setItem("tkn", token)
-        alert(token);
-    })
+    // authenticate(telegramData, (token) => {
+    //     window.localStorage.setItem("tkn", token)
+    //     alert(token);
+    // })
 
     const {tg, onToggleButton} = useTelegram();
 

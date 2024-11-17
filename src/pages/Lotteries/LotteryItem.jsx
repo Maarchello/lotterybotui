@@ -25,7 +25,7 @@ const LotteryItem = ({lottery}) => {
 
                 <CardContent>
                     <Typography gutterBottom component="div">
-                        Lottery №{lottery.id}
+                        {lottery.name}
                     </Typography>
                     <Typography  sx={{
                         fontSize: 25,
