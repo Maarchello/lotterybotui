@@ -41,7 +41,7 @@ const LeaderboardPage = () => {
                             <Typography variant="body2">Всего вложенно</Typography>
                         </Box>
                     </Grid>
-                    <Typography>{leaderboard?.myTotalInvestments} ⭐</Typography>
+                    <Typography>{leaderboard?.totalInvested} ⭐</Typography>
                 </Grid>
 
                 <Grid container alignItems="center" justifyContent="space-between" mt={2}>
@@ -52,16 +52,6 @@ const LeaderboardPage = () => {
                     </Grid>
                     <Typography>{leaderboard?.totalInvestors} 👤</Typography>
                 </Grid>
-
-                {/*<Typography variant="body2" mt={2}>*/}
-                {/*    Мной вложенно: <strong>{leaderboard?.myTotalInvestments} ⭐</strong>*/}
-                {/*</Typography>*/}
-                {/*<Typography variant="body2">*/}
-                {/*    Всего вложенно: <strong>{leaderboard?.totalInvested} ⭐</strong>*/}
-                {/*</Typography>*/}
-                {/*<Typography variant="body2">*/}
-                {/*    Всего инвесторов: <strong>{leaderboard?.totalInvestors}</strong>*/}
-                {/*</Typography>*/}
             </Card>
 
             {/* Я */}
