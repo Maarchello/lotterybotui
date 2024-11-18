@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Typography} from "@mui/material";
-import {useTelegram} from "../../hooks/useTelegram.js";
 import {getCurrentProfile} from "../../service/ProfileService.js";
+import {getThemeColor} from "../../service/ThemeService.js";
 
 const ProfilePage = () => {
-    const {tg} = useTelegram();
-    let colorScheme = tg?.colorScheme || 'dark';
-    // let colorScheme = 'light';
+
+    let colorScheme = getThemeColor();
     let profileLogo = colorScheme === 'dark' ? 'logo-def-b.png' : 'logo-def-w.png';
     let timecoinLogo = colorScheme === 'dark' ? 'timecoin-b.png' : 'timecoin-w.png';
 

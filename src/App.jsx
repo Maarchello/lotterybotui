@@ -8,6 +8,8 @@ import ProfilePage from "./pages/Profile/ProfilePage.jsx";
 import {useTelegram} from "./hooks/useTelegram.js";
 import {useEffect} from "react";
 import {authenticate} from "./service/AuthService.js";
+import {getThemeColor} from "./service/ThemeService.js";
+import LeaderboardPage from "./pages/Leaderboard/LeaderboardPage.jsx";
 
 function App() {
     const telegramData = window.Telegram.WebApp.initData || "";
@@ -25,8 +27,7 @@ function App() {
 
     const theme = createTheme({
         palette: {
-            // mode: 'dark',
-            mode: tg.colorScheme,
+            mode: getThemeColor(),
         },
     })
 
@@ -41,6 +42,7 @@ function App() {
           <Routes>
               <Route index element={<LotteriesPage/>} />
               <Route path={'games'} element={<GamesPage/>} />
+              <Route path={'top'} element={<LeaderboardPage/>} />
               <Route path={'profile'} element={<ProfilePage/>} />
           </Routes>
       </ThemeProvider>

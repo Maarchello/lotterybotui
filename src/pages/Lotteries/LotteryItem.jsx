@@ -1,10 +1,39 @@
 import React from 'react';
-import {Button, Card, CardActions, CardContent, CardMedia, Collapse, Typography} from "@mui/material";
+import {
+    Box,
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    CardMedia,
+    Collapse,
+    LinearProgress,
+    Typography
+} from "@mui/material";
 import {useTelegram} from "../../hooks/useTelegram.js";
 import {useNavigate} from "react-router-dom";
 import {getInvoiceLink} from "../../service/LotteryService.js";
 import CountdownTimer from "../../components/CountdownTimer.jsx";
 import '../../App.css';
+
+function calculateProgress(startDate, endDate) {
+    const now = new Date(); // текущая дата
+    const start = new Date(startDate); // начало лотереи
+    const end = new Date(endDate); // окончание лотереи
+
+    if (now < start) {
+        return 0; // лотерея еще не началась
+    }
+    if (now > end) {
+        return 100; // лотерея уже закончилась
+    }
+
+    const elapsedTime = now - start; // прошедшее время в миллисекундах
+    const totalTime = end - start; // общая продолжительность в миллисекундах
+
+    const progress = (elapsedTime / totalTime) * 100; // процент пройденного времени
+    return progress.toFixed(2); // округляем до двух знаков после запятой
+}
 const LotteryItem = ({lottery}) => {
 
     const navigate = useNavigate();
@@ -18,13 +47,14 @@ const LotteryItem = ({lottery}) => {
     }
 
     let endDate = lottery.endDate;
+    let progress = calculateProgress(lottery.startDate, lottery.endDate);
 
     return (
         <div>
             <Card>
 
                 <CardContent>
-                    <Typography gutterBottom component="div">
+                    <Typography gutterBottom component="div" variant="h5">
                         {lottery.name}
                     </Typography>
                     <Typography  sx={{
@@ -47,7 +77,23 @@ const LotteryItem = ({lottery}) => {
                         👤: {lottery.countInvestors}
                     </Typography>
 
-                    <CountdownTimer targetDate={endDate} />
+                    {/*<Box display="flex" alignItems="center">*/}
+                    {/*    <CountdownTimer targetDate={endDate} />*/}
+                    {/*</Box>*/}
+                    <Box display="flex" alignItems="center">
+                        <LinearProgress
+                            variant="determinate"
+                            value={progress}
+                            sx={{
+                                width: "100%",
+                                height: "10px",
+                                backgroundColor: "#333",
+                                "& .MuiLinearProgress-bar": { backgroundColor: "#F1A06A" },
+                            }}
+                        />
+
+                        <CountdownTimer targetDate={endDate} />
+                    </Box>
 
                 </CardContent>
                 <CardActions disableSpacing sx={{
@@ -59,23 +105,8 @@ const LotteryItem = ({lottery}) => {
                     p: 0,
                 }}>
                     <Button size="small" onClick={onInvestHandler}>Invest</Button>
-                    {/*<ExpandMore*/}
-                    {/*    expand={expanded}*/}
-                    {/*    onClick={handleExpandClick}*/}
-                    {/*    aria-expanded={expanded}*/}
-                    {/*    aria-label="show more">*/}
-
-                    {/*    <ExpandMoreIcon />*/}
-                    {/*</ExpandMore>*/}
 
                 </CardActions>
-                {/*<Collapse in={expanded} timeout="auto" unmountOnExit>*/}
-                {/*    <CardContent>*/}
-                {/*        <Typography paragraph>*/}
-                {/*            <div dangerouslySetInnerHTML={{__html: restaurant.discount}}></div>*/}
-                {/*        </Typography>*/}
-                {/*    </CardContent>*/}
-                {/*</Collapse>*/}
 
             </Card>
         </div>

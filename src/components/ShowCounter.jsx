@@ -4,13 +4,13 @@ const ShowCounter = ({ days, hours, minutes, seconds }) => {
     return (
         <div className="show-counter">
             <div className="countdown-link">
-                <DateTimeDisplay value={days} type={'Days'} isDanger={days <= 3} />
+                <DateTimeDisplay value={days} type={'D'} isDanger={days <= 3} />
                 <p>:</p>
-                <DateTimeDisplay value={hours} type={'Hours'} isDanger={hours <= 6} />
+                <DateTimeDisplay value={hours} type={'H'} isDanger={hours <= 6} />
                 <p>:</p>
-                <DateTimeDisplay value={minutes} type={'Mins'} isDanger={false} />
+                <DateTimeDisplay value={minutes} type={'M'} isDanger={false} />
                 <p>:</p>
-                <DateTimeDisplay value={seconds} type={'Seconds'} isDanger={false} />
+                <DateTimeDisplay value={seconds} type={'S'} isDanger={false} />
             </div>
         </div>
     );
