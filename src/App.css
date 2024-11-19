@@ -6,8 +6,8 @@
 }
 
 body {
-  background: var(--tg-theme-bg-color);
-  color: var(--tg-theme-text-color);
+  background: black;
+  color: white;
 }
 
 .container {
@@ -32,7 +32,7 @@ body {
 }
 
 .font-face-hussar {
-  font-family: "SalinaRegular";
+  font-family: 'Courier New', monospace;
 }
 
 

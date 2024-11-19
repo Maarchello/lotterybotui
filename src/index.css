@@ -1,5 +1,4 @@
 @font-face {
-  font-family: 'SalinaRegular';
-  src: local('SalinaRegular'), url(assets/fonts/SalinaRegular/SalinaRegular.woff) format('woff');
+  font-family: 'Courier New', monospace;
   font-weight: bold;
 }

@@ -8,6 +8,10 @@ const requestOptions = {
 };
 export function getLotteries(callback) {
 
+    const requestOptions = {
+        headers: {'ngrok-skip-browser-warning': 'anyValueHere', 'Authorization': window.localStorage.getItem('tkn')},
+    };
+
     fetch(`${Constants.BASE_URL}/api/v1/lotteries`, requestOptions)
         .then((res) => res.json())
         .then((data) => {
@@ -23,9 +27,10 @@ export function getInvoiceLink(lotteryId, tgUserId, amount, callback) {
         'tgUserId': tgUserId,
         'amount': amount
     });
+
     const requestOptions = {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json', 'Authorization': window.localStorage.getItem('tkn')},
         body: json
     };
 

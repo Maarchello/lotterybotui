@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
     Box,
     Button,
@@ -6,15 +6,34 @@ import {
     CardActions,
     CardContent,
     CardMedia,
-    Collapse,
-    LinearProgress,
+    Collapse, Grid, IconButton,
+    LinearProgress, styled,
     Typography
 } from "@mui/material";
+
 import {useTelegram} from "../../hooks/useTelegram.js";
 import {useNavigate} from "react-router-dom";
 import {getInvoiceLink} from "../../service/LotteryService.js";
 import CountdownTimer from "../../components/CountdownTimer.jsx";
 import '../../App.css';
+import {ExpandMore} from "@mui/icons-material";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+
+// const ExpandMoreAdapter = styled((props: ExpandMoreProps) => {
+//     const { expand, ...other } = props;
+//     return <IconButton {...other} />;
+// })(({ theme, expand }) => ({
+//     transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+//     marginLeft: 'auto',
+//     transition: theme.transitions.create('transform', {
+//         duration: theme.transitions.duration.shortest,
+//     }),
+// }));
+//
+// interface ExpandMoreProps extends IconButtonProps {
+//     expand: boolean;
+// }
 
 function calculateProgress(startDate, endDate) {
     const now = new Date(); // текущая дата
@@ -39,7 +58,10 @@ const LotteryItem = ({lottery}) => {
     const navigate = useNavigate();
     const {tg, user} = useTelegram();
 
-
+    const [expanded, setExpanded] = useState(true);
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
     const onInvestHandler = () => {
         getInvoiceLink(lottery.id, user?.id, 1, (link) => {
             tg.openInvoice(link);
@@ -54,32 +76,45 @@ const LotteryItem = ({lottery}) => {
             <Card>
 
                 <CardContent>
-                    <Typography gutterBottom component="div" variant="h5">
+                    <Typography gutterBottom component="div" variant="h4" sx={{fontWeight: 'bold'}}>
                         {lottery.name}
                     </Typography>
-                    <Typography  sx={{
-                        fontSize: 25,
-                        display: "flex",
-                        justifyContent: "start",
-                        alignItems: "flex-start",
 
-                    }} color="text.secondary">
-                        ⭐: {lottery.totalInvested}
 
-                    </Typography>
-                    <Typography  sx={{
-                        fontSize: 25,
-                        display: "flex",
-                        justifyContent: "start",
-                        alignItems: "flex-start",
+                    <Grid container alignItems="center" justifyContent="space-between" mt={2}>
+                        <Grid item display="flex" alignItems="center">
+                            <Box>
+                                <Typography variant="h5">Total invested:</Typography>
+                            </Box>
+                        </Grid>
+                        <Grid item display="flex" alignItems="center">
+                            <Box>
+                                <Typography variant="h5">{lottery?.totalInvested} ⭐</Typography>
+                            </Box>
+                        </Grid>
 
-                    }} color="text.secondary">
-                        👤: {lottery.countInvestors}
-                    </Typography>
+                        <Grid item display="flex" alignItems="center">
+                            <Box>
+                                <Typography variant="h6">You invested:</Typography>
+                            </Box>
+                        </Grid>
+                        <Grid item display="flex" alignItems="center">
+                            <Box>
+                                <Typography variant="h6">{lottery?.myInvestment} ⭐</Typography>
+                            </Box>
+                        </Grid>
 
-                    {/*<Box display="flex" alignItems="center">*/}
-                    {/*    <CountdownTimer targetDate={endDate} />*/}
-                    {/*</Box>*/}
+                        <Grid container alignItems="center" justifyContent="space-between" mt={2}>
+                            <Grid item display="flex" alignItems="center">
+                                <Box>
+                                    <Typography variant="h4">🥇 50%</Typography>
+                                    <Typography variant="h5">🥈 25%</Typography>
+                                    <Typography variant="h5">🥉 25%</Typography>
+                                </Box>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
                     <Box display="flex" alignItems="center">
                         <LinearProgress
                             variant="determinate"
@@ -102,12 +137,11 @@ const LotteryItem = ({lottery}) => {
                     justifyContent: "flex-end",
                     alignItems: "flex-start",
                     // 👇 Edit padding to further adjust position
-                    p: 0,
+                    p: 2,
                 }}>
-                    <Button size="small" onClick={onInvestHandler}>Invest</Button>
+                    <Button size='large' onClick={onInvestHandler}>Invest</Button>
 
                 </CardActions>
-
             </Card>
         </div>
     );

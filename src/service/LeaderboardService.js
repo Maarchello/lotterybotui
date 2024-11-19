@@ -7,6 +7,9 @@ const requestOptions = {
     headers: {'ngrok-skip-browser-warning': 'anyValueHere'},
 };
 export function getLeaderboard(callback) {
+    const requestOptions = {
+        headers: {'ngrok-skip-browser-warning': 'anyValueHere', 'Authorization': window.localStorage.getItem('tkn')},
+    };
 
     fetch(`${Constants.BASE_URL}/api/v1/leaderboard`, requestOptions)
         .then((res) => res.text())

@@ -7,7 +7,9 @@ const requestOptions = {
     headers: {'ngrok-skip-browser-warning': 'anyValueHere'},
 };
 export function getCurrentProfile(callback) {
-
+    const requestOptions = {
+        headers: {'ngrok-skip-browser-warning': 'anyValueHere', 'Authorization': window.localStorage.getItem('tkn')},
+    };
     fetch(`${Constants.BASE_URL}/api/v1/profiles/me`, requestOptions)
         .then((res) => res.text())
         .then((text) => text.length ? JSON.parse(text) : {})

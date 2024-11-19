@@ -11,8 +11,8 @@ export function authenticate(tgData, callback) {
     };
 
     fetch(`${Constants.BASE_URL}/api/v1/auth/tg`, requestOptions)
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
-
+            callback(data);
         })
 }

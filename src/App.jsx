@@ -14,10 +14,12 @@ import LeaderboardPage from "./pages/Leaderboard/LeaderboardPage.jsx";
 function App() {
     const telegramData = window.Telegram.WebApp.initData || "";
 
-    // authenticate(telegramData, (token) => {
-    //     window.localStorage.setItem("tkn", token)
-    //     alert(token);
-    // })
+    if (window.localStorage.getItem("tkn") === null) {
+        authenticate(telegramData, (token) => {
+            window.localStorage.setItem("tkn", token)
+        })
+    }
+
 
     const {tg, onToggleButton} = useTelegram();
 
@@ -26,6 +28,9 @@ function App() {
     }, []);
 
     const theme = createTheme({
+        typography: {
+            fontFamily: 'Courier New',
+        },
         palette: {
             mode: getThemeColor(),
         },
