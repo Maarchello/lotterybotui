@@ -89,7 +89,7 @@ const LotteryItem = ({lottery}) => {
                         </Grid>
                         <Grid item display="flex" alignItems="center">
                             <Box>
-                                <Typography variant="h5">{lottery?.totalInvested} ⭐</Typography>
+                                <Typography variant="h5">{lottery?.totalInvested || 0} ⭐</Typography>
                             </Box>
                         </Grid>
 
@@ -100,7 +100,7 @@ const LotteryItem = ({lottery}) => {
                         </Grid>
                         <Grid item display="flex" alignItems="center">
                             <Box>
-                                <Typography variant="h6">{lottery?.myInvestment} ⭐</Typography>
+                                <Typography variant="h6">{lottery?.myInvestment || 0} ⭐</Typography>
                             </Box>
                         </Grid>
 

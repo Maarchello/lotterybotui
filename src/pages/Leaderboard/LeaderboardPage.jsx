@@ -41,7 +41,7 @@ const LeaderboardPage = () => {
                             <Typography variant="body2">Всего вложенно</Typography>
                         </Box>
                     </Grid>
-                    <Typography>{leaderboard?.totalInvested} ⭐</Typography>
+                    <Typography>{leaderboard?.totalInvested || 0} ⭐</Typography>
                 </Grid>
 
                 <Grid container alignItems="center" justifyContent="space-between" mt={2}>
@@ -50,7 +50,7 @@ const LeaderboardPage = () => {
                             <Typography variant="body2">Всего инвесторов</Typography>
                         </Box>
                     </Grid>
-                    <Typography>{leaderboard?.totalInvestors} 👤</Typography>
+                    <Typography>{leaderboard?.totalInvestors || 0} 👤</Typography>
                 </Grid>
             </Card>
 
@@ -67,7 +67,7 @@ const LeaderboardPage = () => {
                         />
                         <Typography variant="body2">{leaderboard?.me?.username}</Typography>
                     </Box>
-                    <Typography variant="body2">{leaderboard?.me?.count} ⭐</Typography>
+                    <Typography variant="body2">{leaderboard?.me?.count || 0} ⭐</Typography>
                 </Box>
             </Card>
 
@@ -96,7 +96,7 @@ const LeaderboardPage = () => {
                                 <Typography variant="body2">{item.username}</Typography>
                             </Box>
                         </Grid>
-                        <Typography>{item.count} ⭐</Typography>
+                        <Typography>{item.count || 0} ⭐</Typography>
                     </Grid>
                 })}
 
