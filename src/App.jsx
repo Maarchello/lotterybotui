@@ -14,11 +14,9 @@ import LeaderboardPage from "./pages/Leaderboard/LeaderboardPage.jsx";
 function App() {
     const telegramData = window.Telegram.WebApp.initData || "";
 
-    if (window.localStorage.getItem("tkn") === null) {
-        authenticate(telegramData, (token) => {
-            window.localStorage.setItem("tkn", token)
-        })
-    }
+    authenticate(telegramData, (token) => {
+        window.localStorage.setItem("tkn", token)
+    })
 
 
     const {tg, onToggleButton} = useTelegram();
