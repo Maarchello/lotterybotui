@@ -5,6 +5,7 @@ import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {useNavigate} from "react-router-dom";
 import {LeaderboardOutlined} from "@mui/icons-material";
+import ScoreIcon from '@mui/icons-material/Score';
 
 const MyBottomNavigation = () => {
     const [value, setValue] = useState('Lotteries');
@@ -22,11 +23,14 @@ const MyBottomNavigation = () => {
             <BottomNavigationAction value="Lotteries" label="Lotteries" icon={<EmojiEventsIcon/>}
                                     onClick={() => navigate("/")} />
 
-            <BottomNavigationAction value="Games" label="Games" icon={<SportsEsportsIcon/>}
-                                    onClick={() => navigate("/games")}/>
+            {/*<BottomNavigationAction value="Games" label="Games" icon={<SportsEsportsIcon/>}*/}
+            {/*                        onClick={() => navigate("/games")}/>*/}
 
             <BottomNavigationAction value="Top" label="Top" icon={<LeaderboardOutlined />}
                                     onClick={() => navigate("/top")}/>
+
+            <BottomNavigationAction value="Shop" label="Shop" icon={<ScoreIcon/>}
+                                    onClick={() => navigate("/shop")}/>
 
             <BottomNavigationAction value="Profile" label="Profile" icon={<AccountCircleIcon/>}
                                     onClick={() => navigate("/profile")}/>

@@ -1,40 +1,13 @@
 import React, {useState} from 'react';
-import {
-    Box,
-    Button,
-    Card,
-    CardActions,
-    CardContent,
-    CardMedia,
-    Collapse, Grid, IconButton,
-    LinearProgress, Modal, styled,
-    Typography
-} from "@mui/material";
+import {Box, Card, CardActions, CardContent, Grid, LinearProgress, Modal, Typography} from "@mui/material";
+import Button from "../../components/Button/Button.jsx";
 
 import {useTelegram} from "../../hooks/useTelegram.js";
 import {useNavigate} from "react-router-dom";
 import {getInvoiceLink} from "../../service/LotteryService.js";
 import CountdownTimer from "../../components/CountdownTimer.jsx";
 import '../../App.css';
-import {ExpandMore} from "@mui/icons-material";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import InputSlider from "../../components/Slider/InputSlider.jsx";
-
-
-// const ExpandMoreAdapter = styled((props: ExpandMoreProps) => {
-//     const { expand, ...other } = props;
-//     return <IconButton {...other} />;
-// })(({ theme, expand }) => ({
-//     transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-//     marginLeft: 'auto',
-//     transition: theme.transitions.create('transform', {
-//         duration: theme.transitions.duration.shortest,
-//     }),
-// }));
-//
-// interface ExpandMoreProps extends IconButtonProps {
-//     expand: boolean;
-// }
 
 function calculateProgress(startDate, endDate) {
     const now = new Date(); // текущая дата
@@ -70,11 +43,6 @@ const LotteryItem = ({lottery}) => {
 
     const navigate = useNavigate();
     const {tg, user} = useTelegram();
-
-    const [expanded, setExpanded] = useState(true);
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
 
     const [amount, setAmount] = useState(0);
 
@@ -144,7 +112,7 @@ const LotteryItem = ({lottery}) => {
                             value={progress}
                             sx={{
                                 width: "100%",
-                                height: "10px",
+                                height: "15px",
                                 backgroundColor: "#333",
                                 "& .MuiLinearProgress-bar": { backgroundColor: "#F1A06A" },
                             }}
@@ -162,7 +130,7 @@ const LotteryItem = ({lottery}) => {
                     // 👇 Edit padding to further adjust position
                     p: 2,
                 }}>
-                    <Button size='large' onClick={onChooseSizeHandler}>Invest</Button>
+                    <Button size='large' onClick={onChooseSizeHandler}>Invest ⭐</Button>
 
                     <Modal
                         open={open}
@@ -180,7 +148,6 @@ const LotteryItem = ({lottery}) => {
                             <Button size='large' onClick={onInvestHandler}>Ok</Button>
 
                         </Box>
-
 
                     </Modal>
                 </CardActions>

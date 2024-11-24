@@ -10,6 +10,7 @@ import {useEffect} from "react";
 import {authenticate} from "./service/AuthService.js";
 import {getThemeColor} from "./service/ThemeService.js";
 import LeaderboardPage from "./pages/Leaderboard/LeaderboardPage.jsx";
+import ShopPage from "./pages/Shop/ShopPage.jsx";
 
 function App() {
     const telegramData = window.Telegram.WebApp.initData || "";
@@ -48,6 +49,7 @@ function App() {
               <Route index element={<LotteriesPage/>} />
               <Route path={'games'} element={<GamesPage/>} />
               <Route path={'top'} element={<LeaderboardPage/>} />
+              <Route path={'shop'} element={<ShopPage/>} />
               <Route path={'profile'} element={<ProfilePage/>} />
           </Routes>
       </ThemeProvider>
