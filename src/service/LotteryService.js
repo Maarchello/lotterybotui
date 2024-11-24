@@ -1,24 +1,11 @@
-// const baseUrl = 'http://localhost:8080';
-// const baseUrl = 'https://tops-mudfish-logically.ngrok-free.app';
-
 import {Constants} from "./Constants.js";
+import {getAsJson, post} from "./HttpWrapper.js";
 
 const requestOptions = {
     headers: {'ngrok-skip-browser-warning': 'anyValueHere'},
 };
 export function getLotteries(callback) {
-
-    const requestOptions = {
-        headers: {'ngrok-skip-browser-warning': 'anyValueHere', 'Authorization': window.localStorage.getItem('tkn')},
-    };
-
-    fetch(`${Constants.BASE_URL}/api/v1/lotteries`, requestOptions)
-        .then((res) => res.json())
-        .then((data) => {
-            callback(data.content);
-        }).catch((err) => {
-        console.log(err);
-    });
+    getAsJson(`${Constants.BASE_URL}/api/v1/lotteries`, callback);
 }
 
 export function getInvoiceLink(lotteryId, tgUserId, amount, callback) {
@@ -28,19 +15,5 @@ export function getInvoiceLink(lotteryId, tgUserId, amount, callback) {
         'amount': amount
     });
 
-    const requestOptions = {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json', 'Authorization': window.localStorage.getItem('tkn')},
-        body: json
-    };
-
-    console.log(json)
-
-    fetch(`${Constants.BASE_URL}/api/v1/payments/invoice-link`, requestOptions)
-        .then((res) => res.text())
-        .then((data) => {
-            callback(data);
-        }).catch((err) => {
-        console.log(err);
-    });
+    post(`${Constants.BASE_URL}/api/v1/payments/invoice-link`, json, callback);
 }

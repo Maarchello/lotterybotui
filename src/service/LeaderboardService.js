@@ -1,22 +1,9 @@
-// const baseUrl = 'http://localhost:8080';
-// const baseUrl = 'https://tops-mudfish-logically.ngrok-free.app';
-
 import {Constants} from "./Constants.js";
+import {getAsText} from "./HttpWrapper.js";
 
 const requestOptions = {
     headers: {'ngrok-skip-browser-warning': 'anyValueHere'},
 };
 export function getLeaderboard(callback) {
-    const requestOptions = {
-        headers: {'ngrok-skip-browser-warning': 'anyValueHere', 'Authorization': window.localStorage.getItem('tkn')},
-    };
-
-    fetch(`${Constants.BASE_URL}/api/v1/leaderboard`, requestOptions)
-        .then((res) => res.text())
-        .then((text) => text.length ? JSON.parse(text) : {})
-        .then((data) => {
-            callback(data);
-        }).catch((err) => {
-        console.log(err);
-    });
+    getAsText(`${Constants.BASE_URL}/api/v1/leaderboard`, callback);
 }
