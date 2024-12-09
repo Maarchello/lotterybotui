@@ -1,24 +1,35 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Card, CardActions, Grid, Typography} from "@mui/material";
+import {Box, Card, CardActions, Grid, Icon, Typography} from "@mui/material";
 import Button from "../../components/Button/Button.jsx";
-
-import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
-import {getCurrentProfile} from "../../service/ProfileService.js";
 import {getThemeColor} from "../../service/ThemeService.js";
-import {getInvoiceLink} from "../../service/LotteryService.js";
+import {getInvoiceLink, getItems} from "../../service/ShopService.js";
+import {useTelegram} from "../../hooks/useTelegram.js";
+import {Constants} from "../../service/Constants.js";
 
 const ShopPage = () => {
 
+    const {tg, user} = useTelegram();
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        getItems((data) => {
+            console.log(data)
+            setItems(data);
+        })
+    }, []);
+
     let colorScheme = getThemeColor();
 
-    const onBuyIntent = () => {
-
+    const onBuyIntent = (item) => {
+        getInvoiceLink(item.id, user?.id, (link) => {
+            tg.openInvoice(link)
+        })
     }
 
     return (
         <div className="container">
             <Box
-               >
+            >
 
                 <Card sx={{padding: "15px", marginBottom: "20px", backgroundColor: "#1E1E1E"}}>
                     <Typography variant="h6" gutterBottom>
@@ -39,7 +50,7 @@ const ShopPage = () => {
                             justifyContent: "flex-end",
                             alignItems: "flex-start",
                         }}>
-                            <Button size='large' onClick={onBuyIntent}>15000\month⭐</Button>
+                            <Button size='large' onClick={() => onBuyIntent(null)}>15000\month⭐</Button>
 
                         </CardActions>
 
@@ -57,7 +68,7 @@ const ShopPage = () => {
                             justifyContent: "flex-end",
                             alignItems: "flex-start",
                         }}>
-                            <Button size='large' onClick={onBuyIntent}>50000\month ⭐</Button>
+                            <Button size='large' onClick={() => onBuyIntent(null)}>50000\month ⭐</Button>
 
                         </CardActions>
                     </Grid>
@@ -65,62 +76,38 @@ const ShopPage = () => {
 
                 <Card sx={{padding: "10px", marginBottom: "20px", backgroundColor: "#1E1E1E"}}>
                     <Typography variant="h6" gutterBottom>
-                        Boosts
+                        Items
                     </Typography>
 
-                    <Grid container alignItems="center" justifyContent="space-between" mt={2}>
-                        <Grid item display="flex" alignItems="center">
-                            <Box>
-                                <Typography variant="body2"><RocketLaunchIcon/> Boost Senior</Typography>
-                            </Box>
-                        </Grid>
+                    {items
+                        .sort((a, b) => b.price - a.price)
+                        .map(item => {
+                            return <Grid container alignItems="center" justifyContent="space-between" mt={2}>
+                                <Grid item display="flex" alignItems="center">
+                                    <Box>
+                                        <Typography variant="body2">
+                                            {/*<Icon>*/}
+                                            {/*    <img src={imag === undefined ? '/undefined.png' : imag} />*/}
+                                            {/*</Icon>*/}
 
-                        <CardActions disableSpacing sx={{
-                            alignSelf: "stretch",
-                            display: "flex",
-                            justifyContent: "flex-end",
-                            alignItems: "flex-start",
-                        }}>
-                            <Button size='large' onClick={onBuyIntent}>BUY 50 ⭐</Button>
+                                            {item?.name}
+                                        </Typography>
+                                    </Box>
+                                </Grid>
 
-                        </CardActions>
+                                <CardActions disableSpacing sx={{
+                                    alignSelf: "stretch",
+                                    display: "flex",
+                                    justifyContent: "flex-end",
+                                    alignItems: "flex-start",
+                                }}>
+                                    <Button size='large' onClick={() => onBuyIntent(item)}>BUY {item?.price} ⭐</Button>
 
-                    </Grid>
+                                </CardActions>
 
-                    <Grid container alignItems="center" justifyContent="space-between" mt={2}>
-                        <Grid item display="flex" alignItems="center">
-                            <Box>
-                                <Typography variant="body2"><RocketLaunchIcon/> Boost Middle</Typography>
-                            </Box>
-                        </Grid>
-                        <CardActions disableSpacing sx={{
-                            alignSelf: "stretch",
-                            display: "flex",
-                            justifyContent: "flex-end",
-                            alignItems: "flex-start",
-                        }}>
-                            <Button size='large' onClick={onBuyIntent}>BUY 30 ⭐</Button>
+                            </Grid>
+                        })}
 
-                        </CardActions>
-                    </Grid>
-
-                    <Grid container alignItems="center" justifyContent="space-between" mt={2}>
-                        <Grid item display="flex" alignItems="center">
-                            <Box>
-                                <Typography variant="body2"> <RocketLaunchIcon/> Boost Junior</Typography>
-                            </Box>
-                        </Grid>
-                        <CardActions disableSpacing sx={{
-                            alignSelf: "stretch",
-                            display: "flex",
-                            justifyContent: "flex-end",
-                            alignItems: "flex-start",
-                        }}>
-                            <Button size='large' onClick={onBuyIntent}>BUY 10 ⭐</Button>
-
-                        </CardActions>
-
-                    </Grid>
                 </Card>
             </Box>
         </div>

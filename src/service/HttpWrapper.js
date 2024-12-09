@@ -9,7 +9,7 @@ export function getAsJson(url, callback) {
     fetch(url, requestOptions)
         .then((res) => res.json())
         .then((data) => {
-            callback(data.content);
+            callback(data);
         }).catch((err) => {
         console.log(err);
     });

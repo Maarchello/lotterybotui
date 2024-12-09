@@ -50,14 +50,19 @@ const ProfilePage = () => {
                     </Box>
                 </Box>
 
-                {/* Иконка в центре */}
-                <Box display="flex"
-                    component="img"
-                    src={profileLogo}
-                    alt="profile logo"
-                    sx={{ width: "100%", height: 400 }}
-                />
-                <Typography variant="body1">@{profile?.username}</Typography>
+                {/*/!* Иконка в центре *!/*/}
+                {/*<Box display="flex"*/}
+                {/*    component="img"*/}
+                {/*    src={profileLogo}*/}
+                {/*    alt="profile logo"*/}
+                {/*    sx={{ width: "100%", height: 400 }}*/}
+                {/*/>*/}
+                {/*<Typography variant="body1">@{profile?.username}</Typography>*/}
+
+            </Box>
+
+            <Box>
+                <Typography>Реферальная ссылка</Typography>
 
             </Box>
         </div>

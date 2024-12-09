@@ -25,12 +25,11 @@ const LeaderboardPage = () => {
             <Box
                 sx={{
                     backgroundColor: "#121212",
-                    color: "#fff",
-                    minHeight: "100vh",
+                    color: "#fff"
                 }}
             >
                 {/* Общая статистика */}
-                <Card sx={{ padding: "20px", marginBottom: "20px", backgroundColor: "#1E1E1E" }}>
+                <Box sx={{ padding: "20px", marginBottom: "20px", backgroundColor: "#1E1E1E" }}>
                     <Typography variant="h6" gutterBottom>
                         Общая статистика
                     </Typography>
@@ -52,10 +51,10 @@ const LeaderboardPage = () => {
                         </Grid>
                         <Typography>{leaderboard?.totalInvestors || 0} 👤</Typography>
                     </Grid>
-                </Card>
+                </Box>
 
                 {/* Я */}
-                <Card sx={{ padding: "20px", marginBottom: "20px", backgroundColor: "#1E1E1E" }}>
+                <Box sx={{ padding: "20px", marginBottom: "20px", backgroundColor: "#1E1E1E" }}>
                     {/*<Typography variant="h6" gutterBottom>*/}
                     {/*    Я*/}
                     {/*</Typography>*/}
@@ -69,10 +68,10 @@ const LeaderboardPage = () => {
                         </Box>
                         <Typography variant="body2">{leaderboard?.me?.count || 0} ⭐</Typography>
                     </Box>
-                </Card>
+                </Box>
 
-                {/* Топ 100 майнеров */}
-                <Card sx={{ padding: "20px", backgroundColor: "#1E1E1E" }}>
+                {/* Топ */}
+                <Box sx={{padding: "20px", backgroundColor: "#1E1E1E", maxHeight: '50vh', overflow: 'auto' }} >
                     <Typography variant="h6" gutterBottom>
                         Top 30 investors
                     </Typography>
@@ -101,7 +100,7 @@ const LeaderboardPage = () => {
                         })}
 
                     </Box>
-                </Card>
+                </Box>
             </Box>
         </div>
 

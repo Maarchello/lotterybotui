@@ -14,7 +14,7 @@ const MyBottomNavigation = () => {
 
     return (
         <BottomNavigation
-            sx={{width: "100%", position: "absolute", bottom: 0}}
+            sx={{width: "100%", position: "absolute", bottom: 0, zIndex: 10}}
             value={value}
             onChange={(event, newValue) => {
                 setValue(newValue);

@@ -8,7 +8,7 @@ const LotteriesPage = () => {
 
     useEffect(() => {
         getLotteries((data) => {
-            setLotteries(data);
+            setLotteries(data.content);
         })
     }, []);
 
