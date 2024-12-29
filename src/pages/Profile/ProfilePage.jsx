@@ -1,15 +1,25 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Typography} from "@mui/material";
+import {Box, Button, Link, Typography} from "@mui/material";
 import {getCurrentProfile} from "../../service/ProfileService.js";
 import {getThemeColor} from "../../service/ThemeService.js";
+import {getInvoiceLink, getSubscriptionPlanInvoiceLink} from "../../service/ShopService.js";
+import {useTelegram} from "../../hooks/useTelegram.js";
 
 const ProfilePage = () => {
+
+    const {tg, user} = useTelegram();
 
     let colorScheme = getThemeColor();
     let profileLogo = colorScheme === 'dark' ? 'logo-def-b.png' : 'logo-def-w.png';
     let timecoinLogo = colorScheme === 'dark' ? 'timecoin-b.png' : 'timecoin-w.png';
 
     const [profile, setProfile] = useState({});
+
+    const onBuyIntent = (subscriptionPlan) => {
+        getSubscriptionPlanInvoiceLink(subscriptionPlan, user?.id, (link) => {
+            tg.openInvoice(link)
+        })
+    }
 
     useEffect(() => {
         getCurrentProfile((data) => {
@@ -18,23 +28,24 @@ const ProfilePage = () => {
     }, []);
 
     return (
-        <div>
+        <div className="container">
             <Box
                 sx={{
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
                     alignItems: "left",
-                    position: "relative"
+                    position: "relative",
+                    padding: "20px",
+                    marginBottom: "20px",
+                    backgroundColor: "#1E1E1E"
                 }}>
                 {/* Баланс клиента */}
                 <Box
                     sx={{
-                        position: "relative",
-                        top: 16,
-                        left: 16,
-                        width: 100
+
                     }}>
+                    <Typography sx={{backgroundColor: "#3a3939"}}>balance:</Typography>
                     <Box display="flex" alignItems="center" mt={1}>
                         <Typography variant="h4" sx={{ width: 45, height: 45, mr: 1 }}>🎫</Typography>
                         <Typography variant="h5">{profile?.tickets || '0'}</Typography>
@@ -50,19 +61,69 @@ const ProfilePage = () => {
                     </Box>
                 </Box>
 
-                {/*/!* Иконка в центре *!/*/}
-                {/*<Box display="flex"*/}
-                {/*    component="img"*/}
-                {/*    src={profileLogo}*/}
-                {/*    alt="profile logo"*/}
-                {/*    sx={{ width: "100%", height: 400 }}*/}
-                {/*/>*/}
-                {/*<Typography variant="body1">@{profile?.username}</Typography>*/}
-
             </Box>
 
-            <Box>
-                <Typography>Реферальная ссылка</Typography>
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "left",
+                    position: "relative",
+                    padding: "20px",
+                    marginBottom: "20px",
+                    backgroundColor: "#1E1E1E"
+                }}>
+
+                <Button sx={{
+                    padding: "15px",
+                    backgroundColor: "#3a3939"
+                }}>
+                    <Typography>
+                        <Link href="https://t.me/share/url?url=https://t.me/BillionairesLottery_bot&text=refferal-from-timecoin"
+                              underline="none">
+                            Send referral link
+                        </Link>
+                    </Typography>
+                </Button>
+            </Box>
+
+
+            {/* Subscription plan */}
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "left",
+                    position: "relative",
+                    padding: "20px",
+                    marginBottom: "20px",
+                    backgroundColor: "#1E1E1E"
+                }}>
+
+                <Box
+                    sx={{
+                        marginBottom: "30px"
+                    }}>
+                    <Typography sx={{backgroundColor: "#3a3939"}}>subscription plan: {profile?.subscriptionPlan || 'BASIC'}</Typography>
+                </Box>
+
+                <Button sx={{
+
+                    padding: "15px",
+                    marginBottom: "15px",
+                    backgroundColor: "#3a3939"
+                }} onClick={() => onBuyIntent('DEVELOPER')}>
+                    <Typography>Switch to DEVELOPER plan<br/>(15.000 ⭐ per month)</Typography>
+                </Button>
+                <Button sx={{
+
+                    padding: "15px",
+                    backgroundColor: "#3a3939"
+                }} onClick={() => onBuyIntent('CO_FOUNDER')}>
+                    <Typography>Switch to CO-FOUNDER plan<br/>(50.000 ⭐ per month)</Typography>
+                </Button>
 
             </Box>
         </div>

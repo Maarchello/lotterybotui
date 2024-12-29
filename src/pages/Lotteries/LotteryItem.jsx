@@ -73,35 +73,38 @@ const LotteryItem = ({lottery}) => {
 
 
                     <Grid container alignItems="center" justifyContent="space-between" mt={2}>
-                        <Grid item display="flex" alignItems="center">
-                            <Box>
-                                <Typography variant="h5">Total invested:</Typography>
-                            </Box>
-                        </Grid>
-                        <Grid item display="flex" alignItems="center">
-                            <Box>
-                                <Typography variant="h5">{lottery?.totalInvested || 0} ⭐</Typography>
-                            </Box>
-                        </Grid>
 
-                        <Grid item display="flex" alignItems="center">
-                            <Box>
-                                <Typography variant="h6">You invested:</Typography>
-                            </Box>
-                        </Grid>
-                        <Grid item display="flex" alignItems="center">
-                            <Box>
-                                <Typography variant="h6">{lottery?.myInvestment || 0} ⭐</Typography>
-                            </Box>
+                        <Grid container alignItems="center" justifyContent="space-between" mt={2}>
+                            <Grid item display="flex" alignItems="center">
+                                <Box>
+                                    <Typography variant="body2">Total invested:</Typography>
+                                </Box>
+                            </Grid>
+                            <Typography>{lottery?.totalInvested || 0} ⭐</Typography>
                         </Grid>
 
                         <Grid container alignItems="center" justifyContent="space-between" mt={2}>
                             <Grid item display="flex" alignItems="center">
                                 <Box>
-                                    <Typography variant="h4">🥇 50%</Typography>
-                                    <Typography variant="h5">🥈 25%</Typography>
-                                    <Typography variant="h5">🥉 25%</Typography>
+                                    <Typography variant="body2">You invested:</Typography>
                                 </Box>
+                            </Grid>
+                            <Typography>{lottery?.myInvestment  || 0} ⭐</Typography>
+                        </Grid>
+
+                        <Grid container alignItems="center" justifyContent="space-between" mt={2}>
+                            <Grid item display="flex" alignItems="center">
+
+                                    {
+                                        lottery?.prizeDistributions.length === 1 ? <Typography variant="h4">🥇 100%</Typography>
+                                            :
+                                            <Box>
+                                                <Typography variant="h4">🥇 50%</Typography>
+                                                <Typography variant="h5">🥈 25%</Typography>
+                                                <Typography variant="h5">🥉 25%</Typography>
+                                            </Box>
+                                    }
+
                             </Grid>
                         </Grid>
                     </Grid>
@@ -114,11 +117,11 @@ const LotteryItem = ({lottery}) => {
                                 width: "100%",
                                 height: "15px",
                                 backgroundColor: "#333",
-                                "& .MuiLinearProgress-bar": { backgroundColor: "#F1A06A" },
+                                "& .MuiLinearProgress-bar": {backgroundColor: "#F1A06A"},
                             }}
                         />
 
-                        <CountdownTimer targetDate={endDate} />
+                        <CountdownTimer targetDate={endDate}/>
                     </Box>
 
                 </CardContent>
@@ -130,7 +133,11 @@ const LotteryItem = ({lottery}) => {
                     // 👇 Edit padding to further adjust position
                     p: 2,
                 }}>
-                    <Button size='large' onClick={onChooseSizeHandler}>Invest ⭐</Button>
+
+                    {/*<Typography variant="body2">Boost Junior</Typography>*/}
+                    {/*<Button size='large' onClick={onChooseSizeHandler}>Boost Middle</Button>*/}
+                    <Button size='large' onClick={onChooseSizeHandler}>Boost Senior</Button>
+                    <Button size='small' onClick={onChooseSizeHandler}>Invest ⭐</Button>
 
                     <Modal
                         open={open}
@@ -142,8 +149,8 @@ const LotteryItem = ({lottery}) => {
                             <Typography id="modal-modal-title" variant="h6" component="h2">
                                 How much you want to invest?
                             </Typography>
-                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                <InputSlider callback={setAmount} />
+                            <Typography id="modal-modal-description" sx={{mt: 2}}>
+                                <InputSlider callback={setAmount}/>
                             </Typography>
                             <Button size='large' onClick={onInvestHandler}>Ok</Button>
 

@@ -31,13 +31,13 @@ const LeaderboardPage = () => {
                 {/* Общая статистика */}
                 <Box sx={{ padding: "20px", marginBottom: "20px", backgroundColor: "#1E1E1E" }}>
                     <Typography variant="h6" gutterBottom>
-                        Общая статистика
+                        Common stats
                     </Typography>
 
                     <Grid container alignItems="center" justifyContent="space-between" mt={2}>
                         <Grid item display="flex" alignItems="center">
                             <Box>
-                                <Typography variant="body2">Всего вложенно</Typography>
+                                <Typography variant="body2">Total invested</Typography>
                             </Box>
                         </Grid>
                         <Typography>{leaderboard?.totalInvested || 0} ⭐</Typography>
@@ -46,7 +46,7 @@ const LeaderboardPage = () => {
                     <Grid container alignItems="center" justifyContent="space-between" mt={2}>
                         <Grid item display="flex" alignItems="center">
                             <Box>
-                                <Typography variant="body2">Всего инвесторов</Typography>
+                                <Typography variant="body2">Total investors</Typography>
                             </Box>
                         </Grid>
                         <Typography>{leaderboard?.totalInvestors || 0} 👤</Typography>
@@ -67,6 +67,27 @@ const LeaderboardPage = () => {
                             <Typography variant="body2">{leaderboard?.me?.username}</Typography>
                         </Box>
                         <Typography variant="body2">{leaderboard?.me?.count || 0} ⭐</Typography>
+                    </Box>
+
+                    <Box>
+                        <Grid container alignItems="center" justifyContent="space-between" mt={2}>
+                            <Grid item display="flex" alignItems="center">
+                                <Box>
+                                    <Typography variant="body2">Participation count:</Typography>
+                                </Box>
+                            </Grid>
+                            <Typography>{leaderboard?.me?.participationCount || 0}</Typography>
+                        </Grid>
+                    </Box>
+                    <Box>
+                        <Grid container alignItems="center" justifyContent="space-between" mt={2}>
+                            <Grid item display="flex" alignItems="center">
+                                <Box>
+                                    <Typography variant="body2">Wins count:</Typography>
+                                </Box>
+                            </Grid>
+                            <Typography>{leaderboard?.me?.winsCount || 0}</Typography>
+                        </Grid>
                     </Box>
                 </Box>
 

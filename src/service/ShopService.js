@@ -13,3 +13,13 @@ export function getInvoiceLink(itemId, tgUserId, callback) {
 
     post(`${Constants.BASE_URL}/api/v1/payments/invoice-link`, json, callback);
 }
+
+export function getSubscriptionPlanInvoiceLink(subscriptionPlan, tgUserId, callback) {
+    let json = JSON.stringify({
+        'paymentType': "SUBSCRIPTION",
+        'subscriptionPlan': subscriptionPlan,
+        'tgUserId': tgUserId
+    });
+
+    post(`${Constants.BASE_URL}/api/v1/payments/invoice-link`, json, callback);
+}
