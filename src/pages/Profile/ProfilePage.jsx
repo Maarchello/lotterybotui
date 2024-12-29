@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Box, Button, Link, Typography} from "@mui/material";
 import {getCurrentProfile} from "../../service/ProfileService.js";
 import {getThemeColor} from "../../service/ThemeService.js";
-import {getInvoiceLink, getSubscriptionPlanInvoiceLink} from "../../service/ShopService.js";
+import {getSubscriptionPlanInvoiceLink} from "../../service/ShopService.js";
 import {useTelegram} from "../../hooks/useTelegram.js";
 
 const ProfilePage = () => {
@@ -31,13 +31,13 @@ const ProfilePage = () => {
         <div className="container">
             <Box
                 sx={{
-                    display: "flex",
+
                     flexDirection: "column",
                     justifyContent: "center",
                     alignItems: "left",
                     position: "relative",
-                    padding: "20px",
-                    marginBottom: "20px",
+                    padding: "10px",
+                    marginBottom: "10px",
                     backgroundColor: "#1E1E1E"
                 }}>
                 {/* Баланс клиента */}
@@ -70,17 +70,18 @@ const ProfilePage = () => {
                     justifyContent: "center",
                     alignItems: "left",
                     position: "relative",
-                    padding: "20px",
-                    marginBottom: "20px",
+                    padding: "10px",
+                    marginBottom: "10px",
                     backgroundColor: "#1E1E1E"
                 }}>
 
                 <Button sx={{
-                    padding: "15px",
+                    padding: "10px",
                     backgroundColor: "#3a3939"
                 }}>
                     <Typography>
-                        <Link href="https://t.me/share/url?url=https://t.me/BillionairesLottery_bot&text=refferal-from-timecoin"
+
+                        <Link href={encodeURI('https://t.me/share/url?url=https://t.me/BillionairesLottery_bot&text=Don’t miss the Billionaires Lottery and become a new billionaire!')}
                               underline="none">
                             Send referral link
                         </Link>
@@ -97,29 +98,31 @@ const ProfilePage = () => {
                     justifyContent: "center",
                     alignItems: "left",
                     position: "relative",
-                    padding: "20px",
-                    marginBottom: "20px",
-                    backgroundColor: "#1E1E1E"
+                    padding: "10px",
+                    marginBottom: "10px",
+                    backgroundColor: "#1E1E1E",
+                    maxHeight: "50vh",
+                    overflow: "auto"
                 }}>
 
                 <Box
                     sx={{
-                        marginBottom: "30px"
+                        marginBottom: "15px"
                     }}>
                     <Typography sx={{backgroundColor: "#3a3939"}}>subscription plan: {profile?.subscriptionPlan || 'BASIC'}</Typography>
                 </Box>
 
                 <Button sx={{
 
-                    padding: "15px",
-                    marginBottom: "15px",
+                    padding: "10px",
+                    marginBottom: "10px",
                     backgroundColor: "#3a3939"
                 }} onClick={() => onBuyIntent('DEVELOPER')}>
                     <Typography>Switch to DEVELOPER plan<br/>(15.000 ⭐ per month)</Typography>
                 </Button>
                 <Button sx={{
 
-                    padding: "15px",
+                    padding: "10px",
                     backgroundColor: "#3a3939"
                 }} onClick={() => onBuyIntent('CO_FOUNDER')}>
                     <Typography>Switch to CO-FOUNDER plan<br/>(50.000 ⭐ per month)</Typography>
