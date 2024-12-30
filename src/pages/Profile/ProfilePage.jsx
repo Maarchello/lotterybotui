@@ -88,7 +88,7 @@ const ProfilePage = () => {
                 }}>
                     <Typography>
 
-                        <Link href={encodeURI('https://t.me/share/url?url=https://t.me/BillionairesLottery_bot&text=Don’t miss the Billionaires Lottery and become a new billionaire!')}
+                        <Link href={encodeURI(`https://t.me/share/url?url=https://t.me/BillionairesLottery_bot/start?ref=${user?.id}&text=Don’t miss the Billionaires Lottery and become a new billionaire!`)}
                               underline="none">
                             Send referral link
                         </Link>
