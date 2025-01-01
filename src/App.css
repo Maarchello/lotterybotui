@@ -10,6 +10,18 @@ body {
   color: white;
 }
 
+.app {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.content-holder {
+  flex: 1;
+  overflow-y: auto;
+}
+
 .container {
   padding: 10px;
 }

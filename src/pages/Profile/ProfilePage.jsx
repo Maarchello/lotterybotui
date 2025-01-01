@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Button, Collapse, IconButton, Link, Typography} from "@mui/material";
+import {Box, Button, Collapse, IconButton, Link, Popover, Typography} from "@mui/material";
 import {getCurrentProfile} from "../../service/ProfileService.js";
 import {getThemeColor} from "../../service/ThemeService.js";
 import {getSubscriptionPlanInvoiceLink} from "../../service/ShopService.js";
 import {useTelegram} from "../../hooks/useTelegram.js";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 const ProfilePage = () => {
 
     const {tg, user} = useTelegram();
@@ -13,6 +14,21 @@ const ProfilePage = () => {
     let colorScheme = getThemeColor();
     let profileLogo = colorScheme === 'dark' ? 'logo-def-b.png' : 'logo-def-w.png';
     let timecoinLogo = colorScheme === 'dark' ? 'timecoin-b.png' : 'timecoin-w.png';
+
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [popoverText, setPopoverText] = useState(null);
+
+    const handleClick = (event, popoverText) => {
+        setAnchorEl(event.currentTarget);
+        setPopoverText(popoverText);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
+    const id = open ? anchorEl.id : undefined;
 
     const [profile, setProfile] = useState({});
 
@@ -53,22 +69,55 @@ const ProfilePage = () => {
                     sx={{
 
                     }}>
-                    <Box display="flex" alignItems="center" mt={1}>
+                    <Box display="flex" alignItems="center" gap={2} justifyContent='flex-start' mt={1}>
                         <Typography variant="h4" sx={{ width: 45, height: 45, mr: 1 }}>🎫</Typography>
                         <Typography variant="h5">{profile?.tickets || '0'}</Typography>
+                        <Box display="flex" ml={"auto"} alignItems="right">
+                            <HelpOutlineIcon onClick={(e) => handleClick(e, 'Tickets allow you to join lotteries exclusively for regular lottery winners.')} id={'1'} aria-describedby={id} />
+                            {/*<Popover*/}
+                            {/*    id={id}*/}
+                            {/*    open={open}*/}
+                            {/*    anchorEl={anchorEl}*/}
+                            {/*    onClose={handleClose}*/}
+                            {/*    anchorOrigin={{*/}
+                            {/*        vertical: 'bottom',*/}
+                            {/*        horizontal: 'left',*/}
+                            {/*    }}*/}
+                            {/*>*/}
+                            {/*    <Typography sx={{ p: 2 }}>Tickets allow you to join lotteries exclusively for regular lottery winners.</Typography>*/}
+                            {/*</Popover>*/}
+                        </Box>
                     </Box>
-                    <Box display="flex" alignItems="center" mt={1}>
+                    <Box display="flex" alignItems="center" gap={2} justifyContent='flex-start' mt={1}>
                         <Box
                             component="img"
                             src={timecoinLogo}
                             alt="TC"
                             sx={{ width: 45, height: 45, mr: 1 }}
                         />
-                        <Typography variant="h5">{profile?.timecoins || '0'}</Typography>
+                        <Typography variant="h6"><Link target="_blank" rel="noopener" href={'https://t.me/time_coin_channel'}>Timecoin</Link></Typography>
+
+
+                        <Box display="flex" ml={"auto"} alignItems="right">
+                            <HelpOutlineIcon id={'2'} onClick={(e) => handleClick(e, 'Timecoin is a crypto-token and a platform for trading in-game items across different games.')} aria-describedby={id} />
+                            <Popover
+                                id={id}
+                                open={open}
+                                anchorEl={anchorEl}
+                                onClose={handleClose}
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'left',
+                                }}
+                            >
+                                <Typography sx={{ p: 1 }}>{popoverText}</Typography>
+                            </Popover>
+                        </Box>
                     </Box>
                 </Box>
 
             </Box>
+
 
             <Box
                 sx={{

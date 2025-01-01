@@ -17,7 +17,7 @@ const LotteriesPage = () => {
             {lotteries
 
                 .map(item => {
-                    return <LotteryItem lottery={item} />
+                    return <div style={{marginBottom: "20px"}}><LotteryItem lottery={item} /></div>
                 })
             }
         </div>

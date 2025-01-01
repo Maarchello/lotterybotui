@@ -72,9 +72,9 @@ const LotteryItem = ({lottery}) => {
                     </Typography>
 
 
-                    <Grid container alignItems="center" justifyContent="space-between" mt={2}>
+                    <Grid container alignItems="center" justifyContent="space-between" mt={1}>
 
-                        <Grid container alignItems="center" justifyContent="space-between" mt={2}>
+                        <Grid container alignItems="center" justifyContent="space-between" mt={1}>
                             <Grid item display="flex" alignItems="center">
                                 <Box>
                                     <Typography variant="body2">Total invested:</Typography>
@@ -83,7 +83,7 @@ const LotteryItem = ({lottery}) => {
                             <Typography>{lottery?.totalInvested || 0} ⭐</Typography>
                         </Grid>
 
-                        <Grid container alignItems="center" justifyContent="space-between" mt={2}>
+                        <Grid container alignItems="center" justifyContent="space-between" mt={1}>
                             <Grid item display="flex" alignItems="center">
                                 <Box>
                                     <Typography variant="body2">You invested:</Typography>
@@ -92,16 +92,28 @@ const LotteryItem = ({lottery}) => {
                             <Typography>{lottery?.myInvestment  || 0} ⭐</Typography>
                         </Grid>
 
+                        <Grid container alignItems="center" justifyContent="space-between" mt={1}>
+                            <Grid item display="flex" alignItems="center">
+                                <Box>
+                                    <Typography variant="body2">Limit of participants:</Typography>
+                                </Box>
+                            </Grid>
+                            <Typography>{
+
+                                lottery?.limitMaxInvestors === undefined ? 'ꝏ' : lottery?.totalInvestors + '/' + lottery?.limitMaxInvestors
+                            } 👤</Typography>
+                        </Grid>
+
                         <Grid container alignItems="center" justifyContent="space-between" mt={2}>
                             <Grid item display="flex" alignItems="center">
 
                                     {
-                                        lottery?.prizeDistributions.length === 1 ? <Typography variant="h4">🥇 100%</Typography>
+                                        lottery?.prizeDistributions.length === 1 ? <Typography variant="h4">🥇100%</Typography>
                                             :
                                             <Box>
-                                                <Typography variant="h4">🥇 50%</Typography>
-                                                <Typography variant="h5">🥈 25%</Typography>
-                                                <Typography variant="h5">🥉 25%</Typography>
+                                                <Typography variant="h4">🥇50%</Typography>
+                                                <Typography variant="h5">🥈25%</Typography>
+                                                <Typography variant="h5">🥉25%</Typography>
                                             </Box>
                                     }
 
@@ -131,13 +143,15 @@ const LotteryItem = ({lottery}) => {
                     justifyContent: "flex-end",
                     alignItems: "flex-start",
                     // 👇 Edit padding to further adjust position
-                    p: 2,
+                    p: 1,
                 }}>
 
                     {/*<Typography variant="body2">Boost Junior</Typography>*/}
                     {/*<Button size='large' onClick={onChooseSizeHandler}>Boost Middle</Button>*/}
-                    <Button size='large' onClick={onChooseSizeHandler}>Boost Senior</Button>
-                    <Button size='small' onClick={onChooseSizeHandler}>Invest ⭐</Button>
+                    {/*<Button size='large' onClick={onChooseSizeHandler}>Boost Senior</Button>*/}
+                    <Box sx={{marginBottom: "10px"}}>
+                        <Button size='small' onClick={onChooseSizeHandler}>Invest ⭐</Button>
+                    </Box>
 
                     <Modal
                         open={open}

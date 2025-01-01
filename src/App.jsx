@@ -3,14 +3,13 @@ import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import MyBottomNavigation from "./components/BottomNavigation/MyBottomNavigation.jsx";
 import {Route, Routes} from "react-router-dom";
 import LotteriesPage from "./pages/Lotteries/LotteriesPage.jsx";
-import GamesPage from "./pages/Games/GamesPage.jsx";
 import ProfilePage from "./pages/Profile/ProfilePage.jsx";
 import {useTelegram} from "./hooks/useTelegram.js";
 import {useEffect} from "react";
 import {authenticate} from "./service/AuthService.js";
 import {getThemeColor} from "./service/ThemeService.js";
 import LeaderboardPage from "./pages/Leaderboard/LeaderboardPage.jsx";
-import ShopPage from "./pages/Shop/ShopPage.jsx";
+import FaqPage from "./pages/Faq/FaqPage.jsx";
 
 function App() {
     const telegramData = window.Telegram.WebApp.initData || "";
@@ -42,21 +41,24 @@ function App() {
     })
 
   return (
-    <div>
-      <ThemeProvider theme={theme}>
-          <CssBaseline />
-          {/*<Header/>*/}
+    <div className="app">
 
-          <MyBottomNavigation />
+        <div className="content-holder">
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
 
-          <Routes>
-              <Route index element={<LotteriesPage/>} />
-              <Route path={'games'} element={<GamesPage/>} />
-              <Route path={'top'} element={<LeaderboardPage/>} />
-              <Route path={'shop'} element={<ShopPage/>} />
-              <Route path={'profile'} element={<ProfilePage/>} />
-          </Routes>
-      </ThemeProvider>
+                <Routes>
+                    <Route index element={<LotteriesPage/>} />
+                    <Route path={'lotteries'} element={<LotteriesPage/>} />
+                    <Route path={'top'} element={<LeaderboardPage/>} />
+                    <Route path={'profile'} element={<ProfilePage/>} />
+                    <Route path={'faq'} element={<FaqPage/>} />
+                </Routes>
+
+                <MyBottomNavigation />
+
+            </ThemeProvider>
+        </div>
 
     </div>
   )
