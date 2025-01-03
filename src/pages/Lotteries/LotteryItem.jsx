@@ -8,6 +8,7 @@ import {getBoostInvoiceLink, getInvoiceLink} from "../../service/LotteryService.
 import CountdownTimer from "../../components/CountdownTimer.jsx";
 import '../../App.css';
 import InputSlider from "../../components/Slider/InputSlider.jsx";
+import {Constants} from "../../service/Constants.js";
 
 function calculateProgress(startDate, endDate) {
     const now = new Date(); // текущая дата
@@ -155,39 +156,39 @@ const LotteryItem = ({lottery}) => {
 
                     {
                         lottery?.juniorBoostAvailable ?
-                            <Box display="flex" flexDirection="column" onClick={() => onBoostHandler('JUNIOR')}>
+                            <Box className="boost" onClick={() => onBoostHandler(Constants.BOOST_JUNIOR)}>
                                 <Box
                                     component="img"
                                     src='l1.png'
-                                    alt="TC"
+                                    alt="boostLvl1"
                                     sx={{width: 30, height: 30}}/>
                                 <Typography variant="body2">50⭐</Typography>
-                            </Box> : null
+                            </Box> : <Box sx={{width:30}}></Box>
                     }
 
                     {
                         lottery?.middleBoostAvailable ?
-                            <Box display="flex" flexDirection="column" onClick={() => onBoostHandler('MIDDLE')}>
+                            <Box className="boost" onClick={() => onBoostHandler(Constants.BOOST_MIDDLE)}>
                                 <Box
                                     component="img"
                                     src='l2.png'
-                                    alt="TC"
+                                    alt="boostLvl2"
                                     sx={{width: 30, height: 30}}/>
                                 <Typography variant="body2">200⭐</Typography>
-                            </Box> : null
+                            </Box> : <Box sx={{width:30}}></Box>
                     }
 
 
                     {
                         lottery?.seniorBoostAvailable ?
-                            <Box display="flex" flexDirection="column" onClick={() => onBoostHandler('SENIOR')}>
+                            <Box className="boost" onClick={() => onBoostHandler(Constants.BOOST_SENIOR)}>
                                 <Box
                                     component="img"
                                     src='l3.png'
-                                    alt="TC"
+                                    alt="boostLvl3"
                                     sx={{width: 30, height: 30}}/>
                                 <Typography variant="body2">500⭐</Typography>
-                            </Box> : null
+                            </Box> : <Box sx={{width:30}}></Box>
                     }
 
 
