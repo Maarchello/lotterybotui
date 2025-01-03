@@ -89,7 +89,7 @@ const LotteryItem = ({lottery}) => {
                                     <Typography variant="body2">You invested:</Typography>
                                 </Box>
                             </Grid>
-                            <Typography>{lottery?.myInvestment  || 0} ⭐</Typography>
+                            <Typography>{lottery?.myInvestment || 0} ⭐</Typography>
                         </Grid>
 
                         <Grid container alignItems="center" justifyContent="space-between" mt={1}>
@@ -107,15 +107,16 @@ const LotteryItem = ({lottery}) => {
                         <Grid container alignItems="center" justifyContent="space-between" mt={2}>
                             <Grid item display="flex" alignItems="center">
 
-                                    {
-                                        lottery?.prizeDistributions.length === 1 ? <Typography variant="h4">🥇100%</Typography>
-                                            :
-                                            <Box>
-                                                <Typography variant="h4">🥇50%</Typography>
-                                                <Typography variant="h5">🥈25%</Typography>
-                                                <Typography variant="h5">🥉25%</Typography>
-                                            </Box>
-                                    }
+                                {
+                                    lottery?.prizeDistributions.length === 1 ?
+                                        <Typography variant="h4">🥇100%</Typography>
+                                        :
+                                        <Box>
+                                            <Typography variant="h4">🥇50%</Typography>
+                                            <Typography variant="h5">🥈25%</Typography>
+                                            <Typography variant="h5">🥉25%</Typography>
+                                        </Box>
+                                }
 
                             </Grid>
                         </Grid>
@@ -140,15 +141,50 @@ const LotteryItem = ({lottery}) => {
                 <CardActions disableSpacing sx={{
                     alignSelf: "stretch",
                     display: "flex",
-                    justifyContent: "flex-end",
-                    alignItems: "flex-start",
+                    justifyContent: "space-between",
+                    alignItems: "flex-end",
                     // 👇 Edit padding to further adjust position
                     p: 1,
                 }}>
 
-                    {/*<Typography variant="body2">Boost Junior</Typography>*/}
-                    {/*<Button size='large' onClick={onChooseSizeHandler}>Boost Middle</Button>*/}
-                    {/*<Button size='large' onClick={onChooseSizeHandler}>Boost Senior</Button>*/}
+                    {
+                        lottery?.juniorBoostAvailable ?
+                            <Box display="flex" flexDirection="column">
+                                <Box
+                                    component="img"
+                                    src='boost2.gif'
+                                    alt="TC"
+                                    sx={{width: 45, height: 45}}/>
+                                <Typography variant="body2">50⭐</Typography>
+                            </Box> : null
+                    }
+
+                    {
+                        lottery?.middleBoostAvailable ?
+                            <Box display="flex" flexDirection="column">
+                                <Box
+                                    component="img"
+                                    src='boost2.gif'
+                                    alt="TC"
+                                    sx={{width: 65, height: 65}}/>
+                                <Typography variant="body2">200⭐</Typography>
+                            </Box> : null
+                    }
+
+
+                    {
+                        lottery?.seniorBoostAvailable ?
+                            <Box display="flex" flexDirection="column">
+                                <Box
+                                    component="img"
+                                    src='boost2.gif'
+                                    alt="TC"
+                                    sx={{width: 85, height: 65}}/>
+                                <Typography variant="body2">500⭐</Typography>
+                            </Box> : null
+                    }
+
+
                     <Box sx={{marginBottom: "10px"}}>
                         <Button size='small' onClick={onChooseSizeHandler}>Invest ⭐</Button>
                     </Box>
