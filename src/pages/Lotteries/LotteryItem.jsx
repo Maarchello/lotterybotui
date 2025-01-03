@@ -4,7 +4,7 @@ import Button from "../../components/Button/Button.jsx";
 
 import {useTelegram} from "../../hooks/useTelegram.js";
 import {useNavigate} from "react-router-dom";
-import {getInvoiceLink} from "../../service/LotteryService.js";
+import {getBoostInvoiceLink, getInvoiceLink} from "../../service/LotteryService.js";
 import CountdownTimer from "../../components/CountdownTimer.jsx";
 import '../../App.css';
 import InputSlider from "../../components/Slider/InputSlider.jsx";
@@ -48,6 +48,12 @@ const LotteryItem = ({lottery}) => {
 
     const onInvestHandler = () => {
         getInvoiceLink(lottery.id, user?.id, amount, (link) => {
+            tg.openInvoice(link);
+        });
+    }
+
+    const onBoostHandler = (type) => {
+        getBoostInvoiceLink(lottery.id, user?.id, type, (link) => {
             tg.openInvoice(link);
         });
     }
@@ -149,24 +155,24 @@ const LotteryItem = ({lottery}) => {
 
                     {
                         lottery?.juniorBoostAvailable ?
-                            <Box display="flex" flexDirection="column">
+                            <Box display="flex" flexDirection="column" onClick={() => onBoostHandler('JUNIOR')}>
                                 <Box
                                     component="img"
-                                    src='boost6.gif'
+                                    src='l1.png'
                                     alt="TC"
-                                    sx={{width: 65, height: 65}}/>
+                                    sx={{width: 30, height: 30}}/>
                                 <Typography variant="body2">50⭐</Typography>
                             </Box> : null
                     }
 
                     {
                         lottery?.middleBoostAvailable ?
-                            <Box display="flex" flexDirection="column">
+                            <Box display="flex" flexDirection="column" onClick={() => onBoostHandler('MIDDLE')}>
                                 <Box
                                     component="img"
-                                    src='boost5.gif'
+                                    src='l2.png'
                                     alt="TC"
-                                    sx={{width: 75, height: 75}}/>
+                                    sx={{width: 30, height: 30}}/>
                                 <Typography variant="body2">200⭐</Typography>
                             </Box> : null
                     }
@@ -174,12 +180,12 @@ const LotteryItem = ({lottery}) => {
 
                     {
                         lottery?.seniorBoostAvailable ?
-                            <Box display="flex" flexDirection="column">
+                            <Box display="flex" flexDirection="column" onClick={() => onBoostHandler('SENIOR')}>
                                 <Box
                                     component="img"
-                                    src='boost7.gif'
+                                    src='l3.png'
                                     alt="TC"
-                                    sx={{width: 85, height: 85}}/>
+                                    sx={{width: 30, height: 30}}/>
                                 <Typography variant="body2">500⭐</Typography>
                             </Box> : null
                     }
