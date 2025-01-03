@@ -54,6 +54,19 @@ const LotteryItem = ({lottery}) => {
     }
 
     const onBoostHandler = (type) => {
+
+        if (Constants.BOOST_JUNIOR === type && !lottery?.juniorBoostAvailable) {
+            return;
+        }
+
+        if (Constants.BOOST_MIDDLE === type && !lottery?.middleBoostAvailable) {
+            return;
+        }
+
+        if (Constants.BOOST_SENIOR === type && !lottery?.seniorBoostAvailable) {
+            return;
+        }
+
         getBoostInvoiceLink(lottery.id, user?.id, type, (link) => {
             tg.openInvoice(link);
         });
