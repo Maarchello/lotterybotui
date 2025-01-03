@@ -154,42 +154,37 @@ const LotteryItem = ({lottery}) => {
                     p: 1,
                 }}>
 
-                    {
-                        lottery?.juniorBoostAvailable ?
-                            <Box className="boost" onClick={() => onBoostHandler(Constants.BOOST_JUNIOR)}>
-                                <Box
-                                    component="img"
-                                    src='l1.png'
-                                    alt="boostLvl1"
-                                    sx={{width: 30, height: 30}}/>
-                                <Typography variant="body2">50⭐</Typography>
-                            </Box> : <Box sx={{width:30}}></Box>
-                    }
-
-                    {
-                        lottery?.middleBoostAvailable ?
-                            <Box className="boost" onClick={() => onBoostHandler(Constants.BOOST_MIDDLE)}>
-                                <Box
-                                    component="img"
-                                    src='l2.png'
-                                    alt="boostLvl2"
-                                    sx={{width: 30, height: 30}}/>
-                                <Typography variant="body2">200⭐</Typography>
-                            </Box> : <Box sx={{width:30}}></Box>
-                    }
+                    <Box sx={{opacity: lottery?.juniorBoostAvailable ? 1 : 0.5}} className="boost"
+                         onClick={() => onBoostHandler(Constants.BOOST_JUNIOR)}>
+                        <Box
+                            component="img"
+                            src='l1.png'
+                            alt="boostLvl1"
+                            sx={{width: 30, height: 30}}/>
+                        <Typography variant="body2">50⭐</Typography>
+                    </Box>
 
 
-                    {
-                        lottery?.seniorBoostAvailable ?
-                            <Box className="boost" onClick={() => onBoostHandler(Constants.BOOST_SENIOR)}>
-                                <Box
-                                    component="img"
-                                    src='l3.png'
-                                    alt="boostLvl3"
-                                    sx={{width: 30, height: 30}}/>
-                                <Typography variant="body2">500⭐</Typography>
-                            </Box> : <Box sx={{width:30}}></Box>
-                    }
+                    <Box sx={{opacity: lottery?.middleBoostAvailable ? 1 : 0.5}} className="boost"
+                         onClick={() => onBoostHandler(Constants.BOOST_MIDDLE)}>
+                        <Box
+                            component="img"
+                            src='l2.png'
+                            alt="boostLvl2"
+                            sx={{width: 30, height: 30}}/>
+                        <Typography variant="body2">200⭐</Typography>
+                    </Box>
+
+
+                    <Box sx={{opacity: lottery?.seniorBoostAvailable ? 1 : 0.5}} className="boost"
+                         onClick={() => onBoostHandler(Constants.BOOST_SENIOR)}>
+                        <Box
+                            component="img"
+                            src='l3.png'
+                            alt="boostLvl3"
+                            sx={{width: 30, height: 30}}/>
+                        <Typography variant="body2">500⭐</Typography>
+                    </Box>
 
 
                     <Box sx={{marginBottom: "10px"}}>
