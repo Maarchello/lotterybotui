@@ -152,9 +152,9 @@ const LotteryItem = ({lottery}) => {
                             <Box display="flex" flexDirection="column">
                                 <Box
                                     component="img"
-                                    src='boost2.gif'
+                                    src='boost6.gif'
                                     alt="TC"
-                                    sx={{width: 45, height: 45}}/>
+                                    sx={{width: 65, height: 65}}/>
                                 <Typography variant="body2">50⭐</Typography>
                             </Box> : null
                     }
@@ -164,9 +164,9 @@ const LotteryItem = ({lottery}) => {
                             <Box display="flex" flexDirection="column">
                                 <Box
                                     component="img"
-                                    src='boost2.gif'
+                                    src='boost5.gif'
                                     alt="TC"
-                                    sx={{width: 65, height: 65}}/>
+                                    sx={{width: 75, height: 75}}/>
                                 <Typography variant="body2">200⭐</Typography>
                             </Box> : null
                     }
@@ -177,9 +177,9 @@ const LotteryItem = ({lottery}) => {
                             <Box display="flex" flexDirection="column">
                                 <Box
                                     component="img"
-                                    src='boost2.gif'
+                                    src='boost7.gif'
                                     alt="TC"
-                                    sx={{width: 85, height: 65}}/>
+                                    sx={{width: 85, height: 85}}/>
                                 <Typography variant="body2">500⭐</Typography>
                             </Box> : null
                     }
