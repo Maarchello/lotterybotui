@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Avatar, Box, Card, Grid, Typography} from "@mui/material";
+import {Avatar, Box, Grid, Typography} from "@mui/material";
 import {getLeaderboard} from "../../service/LeaderboardService.js";
 
 function getRandomColor() {
@@ -21,7 +21,7 @@ const LeaderboardPage = () => {
     }, []);
 
     return (
-        <div className="container">
+        <div className="container" style={{marginBottom:"40px"}}>
             <Box
                 sx={{
                     backgroundColor: "#121212",

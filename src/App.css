@@ -116,3 +116,12 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.boost-not-activated {
+  width: 30px;
+  height: 30px;
+}
+.boost-activated {
+  width: 50px;
+  height: 50px;
+}

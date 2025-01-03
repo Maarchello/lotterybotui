@@ -7,6 +7,7 @@ import {useTelegram} from "../../hooks/useTelegram.js";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+
 const ProfilePage = () => {
 
     const {tg, user} = useTelegram();
@@ -61,7 +62,6 @@ const ProfilePage = () => {
                     alignItems: "left",
                     position: "relative",
                     padding: "10px",
-                    marginBottom: "20px",
                     backgroundColor: "#1E1E1E"
                 }}>
                 {/* Баланс клиента */}
@@ -127,7 +127,7 @@ const ProfilePage = () => {
                     alignItems: "left",
                     position: "relative",
                     padding: "10px",
-                    marginBottom: "20px",
+                    marginBottom: "30px",
                     backgroundColor: "#1E1E1E"
                 }}>
 
