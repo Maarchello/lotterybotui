@@ -14,11 +14,11 @@ import FaqPage from "./pages/Faq/FaqPage.jsx";
 function App() {
     const telegramData = window.Telegram.WebApp.initData || "";
 
-    if (window.localStorage.getItem("tkn") === null) {
-        authenticate(telegramData, (token) => {
-            window.localStorage.setItem("tkn", token)
-        })
-    }
+    // if (window.localStorage.getItem("tkn") === null) {
+    //     authenticate(telegramData, (token) => {
+    //         window.localStorage.setItem("tkn", token)
+    //     })
+    // }
 
     authenticate(telegramData, (token) => {
         window.localStorage.setItem("tkn", token)
