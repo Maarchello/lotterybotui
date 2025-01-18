@@ -86,15 +86,15 @@ const LotteryItem = ({lottery}) => {
         <div>
             <Card>
 
-                <CardContent>
-                    <Typography gutterBottom component="div" variant="h4" sx={{fontWeight: 'bold'}}>
+                <CardContent sx={{p:1}}>
+                    <Typography component="div" variant="h4" sx={{fontWeight: 'bold'}}>
                         {lottery.name}
                     </Typography>
 
 
-                    <Grid container alignItems="center" justifyContent="space-between" mt={1}>
+                    <Grid container alignItems="center" justifyContent="space-between">
 
-                        <Grid container alignItems="center" justifyContent="space-between" mt={1}>
+                        <Grid container alignItems="center" justifyContent="space-between">
                             <Grid item display="flex" alignItems="center">
                                 <Box>
                                     <Typography variant="body2">Total invested:</Typography>
@@ -103,7 +103,7 @@ const LotteryItem = ({lottery}) => {
                             <Typography>{lottery?.totalInvested || 0} ⭐</Typography>
                         </Grid>
 
-                        <Grid container alignItems="center" justifyContent="space-between" mt={1}>
+                        <Grid container alignItems="center" justifyContent="space-between">
                             <Grid item display="flex" alignItems="center">
                                 <Box>
                                     <Typography variant="body2">You invested:</Typography>
@@ -112,7 +112,7 @@ const LotteryItem = ({lottery}) => {
                             <Typography>{lottery?.myInvestment || 0} ⭐</Typography>
                         </Grid>
 
-                        <Grid container alignItems="center" justifyContent="space-between" mt={1}>
+                        <Grid container alignItems="center" justifyContent="space-between">
                             <Grid item display="flex" alignItems="center">
                                 <Box>
                                     <Typography variant="body2">Limit of participants:</Typography>
@@ -124,7 +124,7 @@ const LotteryItem = ({lottery}) => {
                             } 👤</Typography>
                         </Grid>
 
-                        <Grid container alignItems="center" justifyContent="space-between" mt={2}>
+                        <Grid container alignItems="center" justifyContent="space-between" mt={1}>
                             <Grid item display="flex" alignItems="center">
 
                                 {
@@ -148,7 +148,7 @@ const LotteryItem = ({lottery}) => {
                             value={progress}
                             sx={{
                                 width: "100%",
-                                height: "15px",
+                                height: "10px",
                                 backgroundColor: "#333",
                                 "& .MuiLinearProgress-bar": {backgroundColor: "#F1A06A"},
                             }}
@@ -164,7 +164,6 @@ const LotteryItem = ({lottery}) => {
                     justifyContent: "space-between",
                     alignItems: "flex-end",
                     // 👇 Edit padding to further adjust position
-                    p: 1,
                 }}>
 
                     <Box sx={{opacity: lottery?.myInvestment > 0 ? 1 : 0.5}} className="boost"
@@ -199,7 +198,7 @@ const LotteryItem = ({lottery}) => {
                     </Box>
 
 
-                    <Box sx={{marginBottom: "10px"}}>
+                    <Box>
                         <Button size='small' onClick={onChooseSizeHandler}>Invest ⭐</Button>
                     </Box>
 
